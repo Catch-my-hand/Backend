@@ -53,6 +53,20 @@ services:
       retries: 5
       start_period: 40s
 
+  spring-boot:
+    container_name: backendAPI
+    restart: always 
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend 
+    ports:
+      - 8080:8080 
+      - 5005:5005
+    depends_on:
+      - mongodb
+      - elasticsearch 
+
       
   node-exporter:
     container_name: node-exporter
