@@ -1,0 +1,105 @@
+version: '3'
+
+services:
+
+  elasticsearch:
+    container_name: elasticsearch
+    build:
+      context: elasticsearch/
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m" # 자바 메모리
+      ELASTIC_PASSWORD: chamomile123
+      discovery.type: single-node
+    healthcheck:
+      test: curl --silent http://elasticsearch:9200 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  kibana:
+      container_name: kibana
+      build:
+        context: kibana/
+      volumes:
+        - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,z
+      ports:
+       - "5601:5601"
+      environment:
+        ELASTICSEARCH_URL: http://elasticsearch:9200
+        ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      depends_on:
+        elasticsearch:
+          condition: service_healthy
+
+  mongodb: 
+    image: mongo
+    container_name: mongodb
+    restart: always
+    env_file:
+      - ./settings/prod/.env.db
+    volumes:
+      - mongodb:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
+    ports: 
+      - 27000:27017
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo mongodb:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+
+  node-exporter:
+    container_name: node-exporter
+    mage: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    ports:
+      - "9100:9100"
+    restart: always
+    deploy:
+      mode: global
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: always
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    links:
+      - alertmanager:alertmanager
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=./prometheus/console_libraries'
+      - '--web.console.templates=./prometheus/consoles'
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    user: "root"
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "8082:3000"
+    volumes:
+      - grafana_volume:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
