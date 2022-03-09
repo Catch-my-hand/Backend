@@ -14,7 +14,7 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx512m -Xms512m" # 자바 메모리
-      ELASTIC_PASSWORD: chamomile123
+      ELASTIC_PASSWORD: catchmyhand
       discovery.type: single-node
     healthcheck:
       test: curl --silent http://elasticsearch:9200 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
@@ -38,11 +38,9 @@ services:
           condition: service_healthy
 
   mongodb: 
-    image: mongo
+    image: mongo:latest
     container_name: mongodb
     restart: always
-    env_file:
-      - ./settings/prod/.env.db
     volumes:
       - mongodb:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
@@ -55,10 +53,10 @@ services:
       retries: 5
       start_period: 40s
 
-
+      
   node-exporter:
     container_name: node-exporter
-    mage: prom/node-exporter
+    image: prom/node-exporter
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -73,6 +71,7 @@ services:
     restart: always
     deploy:
       mode: global
+  
 
   prometheus:
     image: prom/prometheus:latest
@@ -103,3 +102,9 @@ services:
     volumes:
       - grafana_volume:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+
+
+volumes:
+  mongodb:
+  elasticsearch:
+  grafana_volume:

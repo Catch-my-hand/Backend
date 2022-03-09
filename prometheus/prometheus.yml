@@ -22,8 +22,3 @@ scrape_configs:
     scrape_interval: 103s
     static_configs:
       - targets: [ 'node-exporter:9100' ]
-
-  - job_name: 'backend'
-    scrape_interval: 113s
-    static_configs:
-      - targets: [ 'api:5001' ]
