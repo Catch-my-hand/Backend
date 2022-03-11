@@ -55,11 +55,12 @@ services:
 
   spring-boot:
     container_name: backendAPI
+    image: backend 
     restart: always 
+    command: ./gradlew bootJar
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: backend 
     ports:
       - 8080:8080 
       - 5005:5005
