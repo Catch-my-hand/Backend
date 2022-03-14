@@ -14,7 +14,6 @@ public class BackendApplication {
 		return "Welcome Catchmyhand Backend API";
 	}
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
