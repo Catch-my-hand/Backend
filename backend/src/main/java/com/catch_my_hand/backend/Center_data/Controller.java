@@ -3,6 +3,7 @@ package com.catch_my_hand.backend.Center_data;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -13,9 +14,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @RestController
+@RequestMapping(path = "api/v1")
 public class Controller {
 
-    @GetMapping("/api")
+    @GetMapping("/center")
     public String callApi() throws IOException {
         StringBuilder result = new StringBuilder();
         String jsonPrintString = null;

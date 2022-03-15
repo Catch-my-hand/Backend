@@ -12,7 +12,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String imageUri;
+    private String imageuri;
     private String title;
     private String sell;
     private LocalDateTime time;
@@ -21,9 +21,9 @@ public class Post {
     // 성공
     public Post(){}
 
-    public Post(Integer id, String imageUri, String title, String sell, LocalDateTime time, String content) {
+    public Post(Integer id, String imageuri, String title, String sell, LocalDateTime time, String content) {
         this.id = id;
-        this.imageUri = imageUri;
+        this.imageuri = imageuri;
         this.title = title;
         this.sell = sell;
         this.time = time;
@@ -38,12 +38,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getImageUri() {
-        return imageUri;
+    public String getImageuri() {
+        return imageuri;
     }
 
-    public void setImageUri(String imageUri) {
-        this.imageUri = imageUri;
+    public void setImageuri(String imageuri) {
+        this.imageuri = imageuri;
     }
 
     public String getTitle() {
@@ -77,5 +77,4 @@ public class Post {
     public void setContent(String content) {
         this.content = content;
     }
-
 }
