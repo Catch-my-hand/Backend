@@ -1,4 +1,4 @@
-package com.catch_my_hand.backend.home_sale;
+package com.catch_my_hand.backend.home_sale.Entity;
 
 
 import javax.persistence.*;
