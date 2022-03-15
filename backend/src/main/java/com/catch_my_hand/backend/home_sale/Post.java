@@ -18,7 +18,8 @@ public class Post {
     private String sell;
     private LocalDateTime time;
     private String content;
-
+    
+    // 성공
     public Post(){}
 
     public Post(Integer id, String imageUri, String title, String sell, LocalDateTime time, String content) {
