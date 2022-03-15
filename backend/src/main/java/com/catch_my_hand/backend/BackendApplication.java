@@ -3,13 +3,14 @@ package com.catch_my_hand.backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
 public class BackendApplication {
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/" , method = RequestMethod.GET)
 	String home() {
 		return "Welcome Catchmyhand Backend API";
 	}
