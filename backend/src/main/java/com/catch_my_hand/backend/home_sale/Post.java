@@ -15,28 +15,19 @@ public class Post {
     private String imageuri;
     private String title;
     private String sell;
-    private LocalDateTime time;
+    private String time;
     private String content;
     
     // 성공
     public Post(){}
 
-    public Post(Integer id, String imageuri, String title, String sell, LocalDateTime time, String content) {
-        this.id = id;
+    public Post(String imageuri, String title, String sell, String content) {
         this.imageuri = imageuri;
         this.title = title;
         this.sell = sell;
-        this.time = time;
         this.content = content;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getImageuri() {
         return imageuri;
@@ -60,14 +51,6 @@ public class Post {
 
     public void setSell(String sell) {
         this.sell = sell;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
     }
 
     public String getContent() {

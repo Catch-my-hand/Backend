@@ -94,8 +94,6 @@ services:
     container_name: prometheus
     ports:
       - "9090:9090"
-    links:
-      - alertmanager:alertmanager
     volumes:
       - ./prometheus/:/etc/prometheus/
       - ./prometheus/data:/prometheus
