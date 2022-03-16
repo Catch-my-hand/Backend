@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id "org.asciidoctor.convert" version "1.5.9.2"
+	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 
 }
 
@@ -27,7 +27,6 @@ dependencies {
 	}
 	implementation'org.json:json:20190722'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
@@ -37,6 +36,7 @@ ext {
 
 test {
 	outputs.dir snippetsDir
+	useJUnitPlatform()
 }
 
 asciidoctor {
@@ -44,12 +44,6 @@ asciidoctor {
 	dependsOn test
 }
 
-bootJar {
-	dependsOn asciidoctor
-	from ("${asciidoctor.outputDir}/html5") {
-		into 'static/docs'
-	}
-}
 
 tasks.named('test') {
 	useJUnitPlatform()
