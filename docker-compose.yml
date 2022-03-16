@@ -1,58 +1,6 @@
 version: '3'
 
 services:
-
-  elasticsearch:
-    container_name: elasticsearch
-    build:
-      context: elasticsearch/
-    volumes:
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - elasticsearch:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx512m -Xms512m" # 자바 메모리
-      ELASTIC_PASSWORD: catchmyhand
-      discovery.type: single-node
-    healthcheck:
-      test: curl --silent http://elasticsearch:9200 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
-  kibana:
-      container_name: kibana
-      build:
-        context: kibana/
-      volumes:
-        - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,z
-      ports:
-       - "5601:5601"
-      environment:
-        ELASTICSEARCH_URL: http://elasticsearch:9200
-        ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-      depends_on:
-        elasticsearch:
-          condition: service_healthy
-
-  mongodb: 
-    image: mongo:latest
-    container_name: mongodb
-    restart: always
-    volumes:
-      - mongodb:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
-    ports: 
-      - 27000:27017
-    healthcheck:
-      test: echo 'db.stats().ok' | mongo mongodb:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
-
   spring-boot:
     container_name: backendAPI
     image: backend 
@@ -64,11 +12,21 @@ services:
     ports:
       - 8080:8080 
       - 5005:5005
-    depends_on:
-      - mongodb
-      - elasticsearch 
 
-      
+
+  alertmanager:
+    container_name: alertmanager
+    image: prom/alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+
+
   node-exporter:
     container_name: node-exporter
     image: prom/node-exporter
@@ -87,13 +45,14 @@ services:
     deploy:
       mode: global
   
-
   prometheus:
     image: prom/prometheus:latest
     restart: always
     container_name: prometheus
     ports:
       - "9090:9090"
+    links: 
+      - alertmanager:alertmanager
     volumes:
       - ./prometheus/:/etc/prometheus/
       - ./prometheus/data:/prometheus
@@ -118,6 +77,4 @@ services:
 
 
 volumes:
-  mongodb:
-  elasticsearch:
-  grafana_volume:
+  grafana_volume: null
