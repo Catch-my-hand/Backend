@@ -34,7 +34,7 @@ public class PostControllerTest {
     @Test
     public void 가정분양_게시물_테스트() throws Exception {
         //given
-        
+
         //when
 
         //then
