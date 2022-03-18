@@ -1,7 +1,10 @@
 package com.catch_my_hand.backend.homesiteTest;
 
+import com.catch_my_hand.backend.home_sale.Controller.PostController;
+import com.catch_my_hand.backend.home_sale.Entity.Post;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +34,13 @@ public class PostControllerTest {
                 .apply(documentationConfiguration(this.restDocumentation)).build();
     }
 
+    PostController postController = new PostController();
+
     @Test
-    public void 가정분양_게시물_테스트() throws Exception {
+    @DisplayName("Post CRUD 테스트")
+    public void Post_CRUD() {
         //given
+       Post postinssert = postController.postinssert("이미지주소", "테스트입니다.", "2000", "성공실행 테스트");
 
         //when
 

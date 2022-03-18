@@ -1,8 +1,12 @@
 package com.catch_my_hand.backend.home_sale.Entity;
 
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+@Getter
+@Setter
 @Entity
 @Table(name = "postingtbl")
 public class Post {
@@ -16,7 +20,7 @@ public class Post {
     private String sell;
     private String time;
     private String content;
-    
+
     // 성공
     public Post(){}
 
@@ -28,35 +32,4 @@ public class Post {
     }
 
 
-    public String getImageuri() {
-        return imageuri;
-    }
-
-    public void setImageuri(String imageuri) {
-        this.imageuri = imageuri;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSell() {
-        return sell;
-    }
-
-    public void setSell(String sell) {
-        this.sell = sell;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }

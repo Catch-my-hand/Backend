@@ -14,9 +14,10 @@ public class BackendApplication {
 	String home() {
 		return "Welcome Catchmyhand Backend API";
 	}
-
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		SpringApplication.run(BackendApplication.class, args);
+		SlackmessageService.send("내손을 잡아 API 서비스 시작");
+
 	}
 
 }

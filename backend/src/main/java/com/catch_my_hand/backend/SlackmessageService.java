@@ -7,7 +7,7 @@ import com.slack.api.webhook.WebhookResponse;
 
 import java.io.IOException;
 
-public class Message {
+public class SlackmessageService {
     public static WebhookResponse send(String text) {
         try {
             WebhookResponse response = null;
