@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -18,7 +20,7 @@ public class Post {
     private String imageuri;
     private String title;
     private String sell;
-    private String time;
+    private LocalDateTime time;
     private String content;
 
     // 성공

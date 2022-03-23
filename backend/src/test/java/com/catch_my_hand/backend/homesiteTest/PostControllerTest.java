@@ -40,7 +40,7 @@ public class PostControllerTest {
     @DisplayName("Post CRUD 테스트")
     public void Post_CRUD() {
         //given
-       Post postinssert = postController.postinssert("이미지주소", "테스트입니다.", "2000", "성공실행 테스트");
+//       Post postinssert = postController.postinssert("이미지주소", "테스트입니다.", "2000", "성공실행 테스트");
 
         //when
 
