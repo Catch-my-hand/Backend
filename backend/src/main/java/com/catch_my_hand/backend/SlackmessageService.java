@@ -13,7 +13,7 @@ public class SlackmessageService {
             WebhookResponse response = null;
             Slack slack = Slack.getInstance();
 
-            String webhookUrl = "https://hooks.slack.com/services/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";
+            String webhookUrl = "https://hooks.slack.com/services/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";
 
             Payload payload = Payload.builder().text(text).build();
             response = slack.send(webhookUrl, payload);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,7 +21,7 @@ public class Post {
     private String imageuri;
     private String title;
     private String sell;
-    private LocalDateTime time;
+    private LocalDate time;
     private String content;
 
     // 성공
@@ -31,6 +32,7 @@ public class Post {
         this.title = title;
         this.sell = sell;
         this.content = content;
+
     }
 
 

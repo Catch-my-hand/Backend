@@ -1,12 +1,11 @@
 package com.catch_my_hand.backend.home_sale.Controller;
 
-import com.catch_my_hand.backend.home_sale.Entity.Outpost;
 import com.catch_my_hand.backend.home_sale.Entity.Post;
-import com.catch_my_hand.backend.home_sale.Repository.OutpostRepository;
 import com.catch_my_hand.backend.home_sale.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +15,7 @@ import java.util.Optional;
 public class PostController {
 
     @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private OutpostRepository outpostRepository;
-
+    public PostRepository postRepository;
     // R : read
     @GetMapping("/find")
     public List<Post> AllPost() {
@@ -33,7 +28,6 @@ public class PostController {
                               @RequestParam String sell, @RequestParam String content){
 
         postRepository.save(new Post(imageuri, title, sell, content));
-        outpostRepository.save(new Outpost(imageuri, title, sell));
 
         return "Data saved";
     }

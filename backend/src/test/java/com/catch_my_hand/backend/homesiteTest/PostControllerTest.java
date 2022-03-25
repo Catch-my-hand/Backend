@@ -1,7 +1,5 @@
 package com.catch_my_hand.backend.homesiteTest;
 
-import com.catch_my_hand.backend.home_sale.Controller.PostController;
-import com.catch_my_hand.backend.home_sale.Entity.Post;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +32,6 @@ public class PostControllerTest {
                 .apply(documentationConfiguration(this.restDocumentation)).build();
     }
 
-    PostController postController = new PostController();
 
     @Test
     @DisplayName("Post CRUD 테스트")
