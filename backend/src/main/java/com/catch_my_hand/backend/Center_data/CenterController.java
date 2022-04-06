@@ -3,6 +3,7 @@ package com.catch_my_hand.backend.Center_data;
 import org.json.XML;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/v1")
 public class CenterController {
 
 
