@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PatchPetRes {
+public class PostPetRes {
     private int productidx;
 }

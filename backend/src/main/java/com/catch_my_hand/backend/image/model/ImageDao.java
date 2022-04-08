@@ -1,2 +1,4 @@
-package com.catch_my_hand.backend.image.model;public class ImageDao {
+package com.catch_my_hand.backend.image;
+
+public class ImageDao {
 }
