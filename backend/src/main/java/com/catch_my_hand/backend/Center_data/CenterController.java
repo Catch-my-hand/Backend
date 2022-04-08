@@ -47,12 +47,15 @@ public class CenterController {
             Document doc = (Document) dBuilder.parse(url);
             NodeList nodelist = doc.getElementsByTagName("item");
 
+            int sequence = 0;
+
             for (int temp = 0; temp < nodelist.getLength(); temp++) {
                 Node nNode = nodelist.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) nNode;
 
                     center = new Center();
+                    center.setId(++sequence);
                     center.setDesertionNo(getTagValue("desertionNo", element));
                     center.setHappenDt(getTagValue("happenDt", element));
                     center.setProcessState(getTagValue("processState", element));

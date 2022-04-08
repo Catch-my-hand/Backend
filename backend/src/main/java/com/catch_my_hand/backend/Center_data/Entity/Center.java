@@ -35,73 +35,77 @@ public class Center {
     private String filename; //썸네일이미지 파일
 
 //GETTER, SETTER
-    public String getDesertionNo() { return desertionNo; }
+public Integer getId() {return id;}
 
-    public void setDesertionNo(String desertionNo) {this.desertionNo = desertionNo;}
+public void setId(Integer id) {this.id = id;}
+
+public String getDesertionNo() { return desertionNo; }
+
+public void setDesertionNo(String desertionNo) {this.desertionNo = desertionNo;}
     
-    public String getHappenDt() {return happenDt;}
+public String getHappenDt() {return happenDt;}
     
-    public void setHappenDt(String happenDt) {this.happenDt = happenDt;}
+public void setHappenDt(String happenDt) {this.happenDt = happenDt;}
    
-    public String getProcessState() {return processState;}
+public String getProcessState() {return processState;}
 
-    public void setProcessState(String processState) {this.processState = processState;}
+public void setProcessState(String processState) {this.processState = processState;}
 
-    public String getNoticeSdt() { return noticeSdt; }
+public String getNoticeSdt() { return noticeSdt; }
 
-    public void setNoticeSdt(String noticeSdt) {this.noticeSdt = noticeSdt;}
+public void setNoticeSdt(String noticeSdt) {this.noticeSdt = noticeSdt;}
 
-    public String getNoticeEdt() { return noticeEdt; }
+public String getNoticeEdt() { return noticeEdt; }
 
-    public void setNoticeEdt(String noticeEdt) {this.noticeEdt = noticeEdt;}
+public void setNoticeEdt(String noticeEdt) {this.noticeEdt = noticeEdt;}
 
-    public String getKindCd() {return kindCd;}
+public String getKindCd() {return kindCd;}
 
-    public void setKindCd(String kindCd) {this.kindCd = kindCd; }
+public void setKindCd(String kindCd) {this.kindCd = kindCd; }
 
-    public String getColorCd() {return colorCd; }
+public String getColorCd() {return colorCd; }
 
-    public void setColorCd(String colorCd) { this.colorCd = colorCd;}
+public void setColorCd(String colorCd) { this.colorCd = colorCd;}
 
-    public String getAge() {return age;}
+public String getAge() {return age;}
 
-    public void setAge(String age) {this.age = age;}
+public void setAge(String age) {this.age = age;}
 
-    public String getWeight() {return weight;}
+public String getWeight() {return weight;}
 
-    public void setWeight(String weight) {this.weight = weight;}
+public void setWeight(String weight) {this.weight = weight;}
 
-    public String getSexCd() {return sexCd;}
+public String getSexCd() {return sexCd;}
 
-    public void setSexCd(String sexCd) {this.sexCd = sexCd;}
+public void setSexCd(String sexCd) {this.sexCd = sexCd;}
 
-    public String getNeuterYn() {return neuterYn;}
+public String getNeuterYn() {return neuterYn;}
 
-    public void setNeuterYn(String neuterYn) {this.neuterYn = neuterYn;}
+public void setNeuterYn(String neuterYn) {this.neuterYn = neuterYn;}
 
-    public String getSpecialMark() { return specialMark; }
+public String getSpecialMark() { return specialMark; }
 
-    public void setSpecialMark(String specialMark) {this.specialMark = specialMark; }
+public void setSpecialMark(String specialMark) {this.specialMark = specialMark; }
 
-    public String getCareNm() {return careNm;}
+public String getCareNm() {return careNm;}
 
-    public void setCareNm(String careNm) {this.careNm = careNm; }
+public void setCareNm(String careNm) {this.careNm = careNm; }
 
-    public String getCareAddr() {return careAddr;}
+public String getCareAddr() {return careAddr;}
 
-    public void setCareAddr(String careAddr) {this.careAddr = careAddr;}
+public void setCareAddr(String careAddr) {this.careAddr = careAddr;}
 
-    public String getOrgNm() {return orgNm;}
+public String getOrgNm() {return orgNm;}
 
-    public void setOrgNm(String orgNm) {this.orgNm = orgNm;}
+public void setOrgNm(String orgNm) {this.orgNm = orgNm;}
 
-    public String getPopfile() {return popfile; }
+public String getPopfile() {return popfile; }
 
-    public void setPopfile(String popfile) {this.popfile = popfile;}
+public void setPopfile(String popfile) {this.popfile = popfile;}
 
-    public String getFilename() {return filename; }
+public String getFilename() {return filename; }
 
-    public void setFilename(String filename) {this.filename = filename; }
+public void setFilename(String filename) {this.filename = filename; }
 
     @Override
     public String toString() {
