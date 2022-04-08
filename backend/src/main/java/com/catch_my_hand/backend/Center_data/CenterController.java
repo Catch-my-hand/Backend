@@ -56,10 +56,8 @@ public class CenterController {
 
                     center = new Center();
                     center.setId(++sequence);
-                    center.setDesertionNo(getTagValue("desertionNo", element));
                     center.setHappenDt(getTagValue("happenDt", element));
                     center.setProcessState(getTagValue("processState", element));
-                    center.setNoticeSdt(getTagValue("noticeSdt", element));
                     center.setNoticeEdt(getTagValue("noticeEdt", element));
                     center.setKindCd(getTagValue("kindCd", element));
                     center.setColorCd(getTagValue("colorCd", element));
