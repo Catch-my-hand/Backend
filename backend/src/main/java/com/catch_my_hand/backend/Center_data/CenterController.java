@@ -55,6 +55,7 @@ public class CenterController {
                     Element element = (Element) nNode;
 
                     center = new Center();
+
                     center.setId(++sequence);
                     center.setDesertionNo(getTagValue("desertionNo", element));
                     center.setHappenDt(getTagValue("happenDt", element));

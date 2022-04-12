@@ -14,6 +14,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 public class Center {
     @Id

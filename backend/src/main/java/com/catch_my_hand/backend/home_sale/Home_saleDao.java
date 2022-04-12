@@ -1,14 +1,14 @@
 package com.catch_my_hand.backend.home_sale;
 
-import com.catch_my_hand.backend.home_sale.model.GetPetPreviewRes;
-import com.catch_my_hand.backend.home_sale.model.PatchPetReq;
-import com.catch_my_hand.backend.home_sale.model.PostPetReq;
+import com.catch_my_hand.backend.home_sale.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+
+import static com.catch_my_hand.backend.home_sale.model.PetStatus.active;
 
 @Repository
 public class Home_saleDao {
@@ -71,7 +71,45 @@ public class Home_saleDao {
     public List<GetPetPreviewRes> getActivePetList(int page, int size) {
         String getPetQuery = "select P.productidx, P.title, P.status,P.price" +
                 "from Product P join User U" +
-                "on P.useridx"
+                "on P.useridx = U.useridx" +
+                "where P.status = 'active'";
+
+        Object[] getPetParams = new Object[]{(page-1) * size, size};
+
+        return this.jdbcTemplate.query(getPetQuery,
+                (rs, rowNum) -> new GetPetPreviewRes(
+                        rs.getInt("productidx"),
+                        null,
+                        rs.getString("title"),
+                        rs.getString("status"),
+                        rs.getString("price")), getPetParams);
+    }
+
+    // 분양 게시물 상세조회
+    public GetPetRes getPetRes(int petidx) {
+        String getPetQuery = "SELECT P.useridx, (SELECT I.imgUrl FROM Image I WHERE U.useridx = I.useridx) userImgUrl," +
+                "U.nickname, P.productidx, P.title" +
+                "(SELECT C.categoryName FROM Category C WHERE C.categoryidx = P.categoryidx) categoryName," +
+                "P.status, P.content, P.price" +
+                "FROM Product P JOIN User U" +
+                "ON P.useridx = U.useridx" +
+                "WHERE P.productidx = ? ";
+
+        int getPetParams = petidx;
+
+        return this.jdbcTemplate.queryForObject(getPetQuery,
+                (rs, rowNum) -> new GetPetRes(
+                        rs.getInt("useridx"),
+                        rs.getString("userimgUrl"),
+                        rs.getString("nickname"),
+                        rs.getInt("productidx"),
+                        rs.getString("categoryname"),
+                        null,
+                        rs.getString("title"),
+                        rs.getInt("status"),
+                        rs.getString("content"),
+                        rs.getString("price")
+                ), getPetParams);
     }
 
 
