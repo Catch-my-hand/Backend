@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class ImageDAO {
+public class ImageDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired

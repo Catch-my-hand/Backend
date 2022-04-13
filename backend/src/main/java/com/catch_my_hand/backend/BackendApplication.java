@@ -16,7 +16,7 @@ public class BackendApplication {
 	}
 	public static void main(String[] args){
 		SpringApplication.run(BackendApplication.class, args);
-		SlackmessageService.send("내손을 잡아 API 서비스 시작");
+		SlackmessageService.send("내손을 잡아 서버 열림");
 
 	}
 

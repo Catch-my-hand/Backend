@@ -1,7 +1,6 @@
 package com.catch_my_hand.backend.image;
 
 import com.catch_my_hand.backend.config.BaseException;
-import com.catch_my_hand.backend.config.BaseResponseStatus;
 import com.catch_my_hand.backend.image.model.PostImageReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +15,11 @@ import static com.catch_my_hand.backend.config.BaseResponseStatus.*;
 public class ImageService {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final ImageDAO imageDAO;
+    private final ImageDao imageDAO;
     private final ImageProvider imageProvider;
 
     @Autowired
-    public ImageService(ImageDAO imageDAO, ImageProvider imageProvider) {
+    public ImageService(ImageDao imageDAO, ImageProvider imageProvider) {
         this.imageDAO = imageDAO;
         this.imageProvider = imageProvider;
     }
