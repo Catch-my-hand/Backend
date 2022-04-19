@@ -2,6 +2,7 @@ package com.catch_my_hand.backend.user;
 
 import com.catch_my_hand.backend.config.BaseException;
 import com.catch_my_hand.backend.config.BaseResponseStatus;
+import com.catch_my_hand.backend.home_sale.Home_saleDao;
 import com.catch_my_hand.backend.user.model.PostUserReq;
 import com.catch_my_hand.backend.user.model.PostUserRes;
 import org.slf4j.Logger;
@@ -14,10 +15,12 @@ public class UserService {
 
     private final UserDao userDao;
     private final UserProvider userProvider;
+    private final Home_saleDao home_saleDao;
 
-    public UserService(UserDao userDao, UserProvider userProvider) {
+    public UserService(UserDao userDao, UserProvider userProvider, Home_saleDao home_saleDao) {
         this.userDao = userDao;
         this.userProvider = userProvider;
+        this.home_saleDao = home_saleDao;
     }
 
     // 회원가입
@@ -31,6 +34,17 @@ public class UserService {
 
         } catch (Exception e) {
             throw new BaseException(BaseResponseStatus.DATABASE_ERROR);
+        }
+    }
+
+    // 유저 삭제
+    public int withdraw(int useridx) throws BaseException {
+        try {
+            int withdrawUserCnt = userDao.deleteUser(useridx);
+            home_saleDao.withdrawPet(useridx);
+            return withdrawUserCnt;
+        } catch (Exception e) {
+            throw new BaseException(BaseResponseStatus.USERS_STATUS_NOT_ACTIVE);
         }
     }
 }

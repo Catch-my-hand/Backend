@@ -112,12 +112,17 @@ public class Home_saleDao {
                 ), getPetParams);
     }
 
-
     // 상품삭제
     public int deletePet (int petidx) {
         String deleteUserQuery = "delete from Product where productidx =?";
         int getPetParams = petidx;
         return this.jdbcTemplate.update(deleteUserQuery, getPetParams);
+    }
+
+    // 탈퇴 회원 상태 수정
+    public int withdrawPet(int useridx) {
+        String modifyPetQuery = "update Product set status = 'withdraw' where useridx = ? ";
+        return this.jdbcTemplate.update(modifyPetQuery, useridx);
     }
 
 

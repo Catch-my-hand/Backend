@@ -55,4 +55,12 @@ public class UserDao {
                 );
     }
 
+    // 회원 삭제
+    public int deleteUser(int useridx) {
+        String deleteUserQuery = "DELETE FROM User WHERE useridx = ?";
+        int getUserParams = useridx;
+
+        return this.jdbcTemplate.update(deleteUserQuery, getUserParams);
+    }
+
 }
