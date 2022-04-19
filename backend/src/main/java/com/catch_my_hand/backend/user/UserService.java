@@ -27,8 +27,8 @@ public class UserService {
         }
         try {
             int useridx = userDao.createUser(postUserReq);
-
             return new PostUserRes(useridx);
+
         } catch (Exception e) {
             throw new BaseException(BaseResponseStatus.DATABASE_ERROR);
         }

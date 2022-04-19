@@ -10,4 +10,5 @@ import lombok.*;
 public class PostLoginReq {
     private String login_id;
     private String login_pw;
+
 }
