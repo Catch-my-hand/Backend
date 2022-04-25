@@ -7,6 +7,7 @@ import com.catch_my_hand.backend.user.model.PostLoginReq;
 import com.catch_my_hand.backend.user.model.PostLoginRes;
 import com.catch_my_hand.backend.user.model.PostUserReq;
 import com.catch_my_hand.backend.user.model.PostUserRes;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "User Controller", description = "User Controller REST API")
 public class UserController {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -55,6 +57,5 @@ public class UserController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-
 
 }

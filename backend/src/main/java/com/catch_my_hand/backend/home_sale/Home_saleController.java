@@ -3,6 +3,7 @@ package com.catch_my_hand.backend.home_sale;
 import com.catch_my_hand.backend.config.BaseException;
 import com.catch_my_hand.backend.config.BaseResponse;
 import com.catch_my_hand.backend.home_sale.model.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "가정분양", description = "가정분양 REST API")
 public class Home_saleController {
 
     final Logger logger = LoggerFactory.getLogger(this.getClass());
