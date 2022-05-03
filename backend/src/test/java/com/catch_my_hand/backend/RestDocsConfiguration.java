@@ -1,4 +1,4 @@
-package net.schoolvery.schoolveryserver;
+package com.catch_my_hand.backend;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

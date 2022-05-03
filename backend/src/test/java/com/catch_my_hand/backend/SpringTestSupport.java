@@ -1,4 +1,4 @@
-package net.schoolvery.schoolveryserver;
+package com.catch_my_hand.backend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
