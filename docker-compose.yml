@@ -1,8 +1,27 @@
 version: '3'
 
 services:
+
+  mysql: 
+    container_name: mysql
+    image: mysql:latest
+    platform: linux/amd64
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: catchmyhand
+      MYSQL_DATABASE: catchDB
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: echo 'db.stats().ok' | mysql mysql:3306/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    
   spring-boot:
-    container_name: backendAPI
+    container_name: springboot
     image: backend 
     # restart: always 
     # command: ./gradlew bootJar
@@ -10,8 +29,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - 8080:8080 
-      - 5005:5005
+      - 8080:8080
+    depends_on:
+      condition: service_healthy
 
 
   alertmanager:
@@ -78,3 +98,4 @@ services:
 
 volumes:
   grafana_volume: null
+  mysql:
