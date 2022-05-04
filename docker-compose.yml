@@ -2,29 +2,6 @@ version: '3'
 
 services:
 
-  db:
-    image: mysql
-    container_name: mysql
-    restart: always
-    ports:
-      - "3307:3307"
-    command:
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-    environment:
-         MYSQL_DATABASE: catchDB
-         MYSQL_ROOT_USER: root
-         MYSQL_ROOT_PASSWORD: 1234
-         MYSQL_ROOT_HOST: localhost
-    env_file :
-      - ./envs/mysql
-    volumes:
-      - data_mysql:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
-    
   springboot:
     container_name: springboot
     restart: always 
@@ -32,9 +9,6 @@ services:
     build: ./backend
     ports:
       - 8080:8080
-    depends_on:
-      db: 
-        condition: service_healthy
 
   alertmanager:
     container_name: alertmanager
@@ -101,4 +75,3 @@ services:
 
 volumes:
   grafana_volume: null
-  data_mysql:

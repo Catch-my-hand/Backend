@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 @Tag(name = "User Controller", description = "User Controller REST API")
 public class UserController {
     final Logger logger = LoggerFactory.getLogger(this.getClass());

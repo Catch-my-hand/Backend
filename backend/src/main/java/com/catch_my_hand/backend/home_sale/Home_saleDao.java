@@ -25,14 +25,14 @@ public class Home_saleDao {
         Object[] createPetParams = new Object[]{postPetReq.getUseridx(), postPetReq.getCategoryidx(), postPetReq.getTitle(), postPetReq.getPrice(), postPetReq.getContent()};
         this.jdbcTemplate.update(createPetQuery, createPetParams);
         String lastInsertIdQuery = "select last_insert_id()";
-        int petIdx = this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
-        return petIdx;
+        int productidx = this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
+        return productidx;
     }
 
     // 분양 수정
-    public int modifyPet(int petidx, PostPetReq postPetReq) {
+    public int modifyPet(int productidx, PostPetReq postPetReq) {
         String modifyPetQuery = "update Product set categoryidx=?, title=?, price=?, content=? where productidx=?";
-        Object[] modifyPetParams = new Object[]{postPetReq.getCategoryidx(), postPetReq.getTitle(), postPetReq.getPrice(), postPetReq.getContent(), petidx};
+        Object[] modifyPetParams = new Object[]{postPetReq.getCategoryidx(), postPetReq.getTitle(), postPetReq.getPrice(), postPetReq.getContent(), productidx};
         return this.jdbcTemplate.update(modifyPetQuery, modifyPetParams);
     }
 
