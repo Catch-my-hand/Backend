@@ -3,6 +3,7 @@ package com.catch_my_hand.backend.user;
 import com.catch_my_hand.backend.user.model.PostLoginReq;
 import com.catch_my_hand.backend.user.model.PostUserReq;
 import com.catch_my_hand.backend.user.model.User;
+import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
 @Repository
+@Log4j2
 public class UserDao {
     private JdbcTemplate jdbcTemplate;
 

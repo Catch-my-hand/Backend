@@ -1,27 +1,23 @@
 package com.catch_my_hand.backend.user;
 
+import com.catch_my_hand.backend.Home_sale.ProductDao;
 import com.catch_my_hand.backend.config.BaseException;
 import com.catch_my_hand.backend.config.BaseResponseStatus;
-import com.catch_my_hand.backend.home_sale.Home_saleDao;
 import com.catch_my_hand.backend.user.model.PostUserReq;
 import com.catch_my_hand.backend.user.model.PostUserRes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+@Log4j2
 public class UserService {
-    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final UserDao userDao;
     private final UserProvider userProvider;
-    private final Home_saleDao home_saleDao;
+    private final ProductDao productDao;
 
-    public UserService(UserDao userDao, UserProvider userProvider, Home_saleDao home_saleDao) {
-        this.userDao = userDao;
-        this.userProvider = userProvider;
-        this.home_saleDao = home_saleDao;
-    }
 
     // 회원가입
     public PostUserRes createUser(PostUserReq postUserReq) throws BaseException {
@@ -41,7 +37,7 @@ public class UserService {
     public int withdraw(int useridx) throws BaseException {
         try {
             int withdrawUserCnt = userDao.deleteUser(useridx);
-            home_saleDao.withdrawPet(useridx);
+            productDao.withdrawProduct(useridx);
             return withdrawUserCnt;
         } catch (Exception e) {
             throw new BaseException(BaseResponseStatus.USERS_STATUS_NOT_ACTIVE);

@@ -1,2 +1,13 @@
-package com.catch_my_hand.backend.image.model;public class PostImageRes {
+package com.catch_my_hand.backend.image.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class PostImageRes {
+    private int imgidx;
+
 }

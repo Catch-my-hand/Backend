@@ -6,6 +6,7 @@ import com.catch_my_hand.backend.config.BaseResponseStatus;
 import com.catch_my_hand.backend.user.model.PostLoginReq;
 import com.catch_my_hand.backend.user.model.PostLoginRes;
 import com.catch_my_hand.backend.user.model.User;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,10 @@ import org.springframework.stereotype.Service;
 import static com.catch_my_hand.backend.config.BaseResponseStatus.*;
 
 @Service
+@Log4j2
 public class UserProvider {
 
     private final UserDao userDao;
-
-    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserProvider(UserDao userDao) {
