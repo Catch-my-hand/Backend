@@ -1,0 +1,17 @@
+{
+	"ulid": "01G2A96T8VE601VHEFFYZD2E7Q",
+	"minTime": 1651642487240,
+	"maxTime": 1651644000000,
+	"stats": {
+		"numSamples": 3155,
+		"numSeries": 1633,
+		"numChunks": 1633
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01G2A96T8VE601VHEFFYZD2E7Q"
+		]
+	},
+	"version": 1
+}
