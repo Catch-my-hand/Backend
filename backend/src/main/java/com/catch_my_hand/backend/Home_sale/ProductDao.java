@@ -58,14 +58,13 @@ public class ProductDao {
 
     // 전체 조회
     public List<GetProductPreviewRes> getProductPreviewResList(int page, int size) {
-        String getProductQuery = "select P.productidx, P.title, P.status, P.price" +
-                "from Product P join User U" +
-                "on P.useridx = U.useridx" +
+        String getProductsQuery = "select P.productidx, P.title, P.status, P.price " +
+                "from Product P join User U " +
+                "on P.userIdx = U.userIdx " +
                 "limit ?,?";
-
         Object[] getProductParams = new Object[]{(page - 1) * size, size};
 
-        return this.jdbcTemplate.query(getProductQuery,
+        return this.jdbcTemplate.query(getProductsQuery,
                 (rs, rowNum) -> new GetProductPreviewRes(
                         rs.getInt("productidx"),
                         null,
