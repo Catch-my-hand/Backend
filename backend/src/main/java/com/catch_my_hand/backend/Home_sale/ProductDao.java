@@ -11,18 +11,21 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
+// Dao : 데이터 베이스내, 해당 데이터를 저장하고 불러오는 즉, 통신을 하기위한 class
 @Repository
+//해당 클래스에서의 로그를 보기위한 어노테이션
 @Log4j2
 public class ProductDao {
 
     private JdbcTemplate jdbcTemplate;
 
+    // Springboot API에 전달받은 데이터를 DB에 저장하기 위한 jdbc 의존성 관계주입
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    //등록
+    // 게시물 등록
     public int createProduct(PostProductReq postProductReq) {
         String createProductQuery = "insert into Product(useridx, categoryidx, title, price, content,status,buyer) VALUES(?,?,?,?,?,?,?)";
         Object[] createProductParams = new Object[]{postProductReq.getUseridx(), postProductReq.getCategoryidx(), postProductReq.getTitle(), postProductReq.getPrice(),
@@ -34,7 +37,7 @@ public class ProductDao {
         return productidx;
     }
 
-    // 수정
+    // 게시물 수정
     public int modifyProduct(int productidx, PostProductReq postProductReq) {
         String modifyProductQuery = "update Product set categoryidx=?, title=?, price=?, content=?, status=? where productidx=?";
         Object[] modifyProductParams = new Object[]{postProductReq.getCategoryidx(), postProductReq.getTitle(), postProductReq.getPrice(),
