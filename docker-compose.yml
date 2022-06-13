@@ -5,7 +5,6 @@ services:
   springboot:
     container_name: springboot
     restart: always 
-    # command: ./gradlew bootJar
     build: ./backend
     ports:
       - 8080:8080
